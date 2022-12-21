@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
 
 void main() {
@@ -26,22 +27,49 @@ class HomePage extends StatelessWidget {
     Transaction(
         id: 't2', title: 'New Jacket', amount: 50.55, date: DateTime.now()),
   ];
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Personal Expenses"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             width: double.infinity,
-            color: Colors.blue,
             child: const Card(
+              color: Colors.blue,
               child: Text('Chart'),
+            ),
+          ),
+          Card(
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Title'),
+                    controller: titleController,
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        print(titleController.text);
+                        print(amountController.text);
+                        print("test");
+                      },
+                      child: Text('Add transaction'))
+                ],
+              ),
             ),
           ),
           Column(
@@ -62,7 +90,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        tx.amount.toString(),
+                        '\$${tx.amount}',
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -70,21 +98,18 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purple)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(tx.date.toString()),
-                        ],
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tx.title,
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          DateFormat.yMMMd().format(tx.date),
+                        ),
+                      ],
                     )
                   ],
                 ),
