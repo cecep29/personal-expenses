@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import './transaction.dart';
 
@@ -68,11 +70,21 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Text(tx.title),
-                        Text(tx.date.toString()),
-                      ],
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.purple)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            tx.title,
+                            style: const TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          Text(tx.date.toString()),
+                        ],
+                      ),
                     )
                   ],
                 ),
