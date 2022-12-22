@@ -31,17 +31,19 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Personal Expenses"),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: const Card(
-              color: Colors.blue,
-              child: Text('Chart'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              child: const Card(
+                color: Colors.blue,
+                child: Text('Chart'),
+              ),
             ),
-          ),
-          const UserTransaction(),
-        ],
+            const UserTransaction(),
+          ],
+        ),
       ),
     );
   }
