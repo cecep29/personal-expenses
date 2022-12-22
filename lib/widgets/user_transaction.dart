@@ -20,14 +20,14 @@ class _UserTransactionState extends State<UserTransaction> {
   ];
 
   void _addTransaction(String txTitle, double txAmount) {
-    Transaction transaction = Transaction(
+    final transactionData = Transaction(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
         date: DateTime.now());
 
     setState(() {
-      _transactions.add(transaction);
+      _transactions.add(transactionData);
     });
   }
 

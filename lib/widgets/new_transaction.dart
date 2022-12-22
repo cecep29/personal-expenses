@@ -19,13 +19,15 @@ class NewTransaction extends StatelessWidget {
               decoration: const InputDecoration(labelText: 'Title'),
               controller: titleController,
             ),
-            const TextField(
+            TextField(
               decoration: InputDecoration(labelText: 'Amount'),
+              controller: amountController,
             ),
             TextButton(
-                onPressed: () =>
-                    transactionHandler(titleController, amountController),
-                child: const Text('Add transaction'))
+              onPressed: () => transactionHandler(
+                  titleController.text, double.parse(amountController.text)),
+              child: const Text('Add transaction'),
+            )
           ],
         ),
       ),
